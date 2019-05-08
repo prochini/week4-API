@@ -18,3 +18,4 @@ request.get('https://lidemy-book-store.herokuapp.com/books?_limit=10',
   ```
   
   
+###### `process.argv` is a list of the parameters you append to the terminal command.
