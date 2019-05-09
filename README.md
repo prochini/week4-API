@@ -96,7 +96,31 @@ if (process.argv[2] === 'read') {
 }
 
 ```
+### 請參考 Twitch API 的文件，寫一隻程式去呼叫 Twitch API，並拿到「最受歡迎的遊戲列表（Get Top Games）」然後依序印出 id 跟遊戲名稱。
+```js
+const request = require('request');
 
+const options = {
+  url: 'https://api.twitch.tv/helix/games/top',
+  headers: {
+    'Client-ID': 'ry76htktupl8mlicd29yf9xhrc2opo',
+  },
+};
+
+function callback(error, response, body) {
+  if (!error && response.statusCode === 200) {
+    const obj = JSON.parse(body);
+    obj.data.forEach(function(element) {
+      console.log(`${element.id}  ${element.name}`);
+    });
+
+  }
+}
+
+
+request(options, callback);
+
+```
 ### `process.argv` is a list of the parameters you append to the terminal command.
 
 ```js
