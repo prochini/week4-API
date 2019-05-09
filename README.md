@@ -16,9 +16,31 @@ request.get('https://lidemy-book-store.herokuapp.com/books?_limit=10',
     }
   });
   ```
+### node hw2.js list // 印出前二十本書的 id 與書名
+### node hw2.js read 1 // 輸出 id 為 1 的書籍資料
+```js
+const request = require('request');
+const process = require('process');
+
+if (process.argv[2] === 'read') {
+  request(
+    `https://lidemy-book-store.herokuapp.com/books/${process.argv[3]}`,
+    (error, response, body) => {
+      console.log(body);
+    },
+  );
+} else if (process.argv[2] === 'list') {
+  request.get('https://lidemy-book-store.herokuapp.com/books?_limit=20',
+    (error, response, body) => {
+      const json = JSON.parse(body);
+      console.log(json);
+    });
+}
+
+
+```
   
-  
-###### `process.argv` is a list of the parameters you append to the terminal command.
+### `process.argv` is a list of the parameters you append to the terminal command.
 
 ```js
 const obj =  JSON.parse( process.argv[2] );
